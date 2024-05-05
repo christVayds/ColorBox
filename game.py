@@ -23,7 +23,7 @@ class Game(pygame.sprite.Sprite):
                 rows.draw(screen)
 
     def generate(self):
-        for _ in range(5):
+        for _ in range(20):
             for _ in range(7):
                 self.listRows.append(objectBox(self.rows, self.columns, self.width, self.height, self.colors.randomColor()))
                 self.rows += self.width

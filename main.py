@@ -22,20 +22,11 @@ balls = [
     Ball((windowSize['width'] - 10) / 2, (windowSize['height'] - 10), 10, 10, colors.randomColor())
 ]
 
-objects = [
-    objectBox(5, 10, 50, 20),
-    objectBox(55, 10, 50, 20),
-    objectBox(105, 10, 50, 20),
-    objectBox(155, 10, 50, 20),
-]
-
 def draw():
 
     screen.fill((0,0,0))
 
     # objectbox
-    # for obj in objects:
-    #     obj.draw(screen)
     game.draw(screen)
 
     # draw player

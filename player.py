@@ -18,7 +18,6 @@ class Player(pygame.sprite.Sprite):
     def draw(self, screen):
 
         self.movement()
-
         pygame.draw.rect(screen, (255,255,255), self.rect)
 
     def movement(self):
@@ -63,9 +62,9 @@ class Ball(pygame.sprite.Sprite):
                 if pygame.sprite.collide_mask(self, row):
                     self.dirx = random.choice([1, -1])
                     self.diry = 1
-                    if self.color == row.color:
+                    if self.color != row.color:
                         column.remove(row)
-                        listBalls.append(Ball(self.rect.x, self.rect.y, self.width, self.height, self.colors.randomColor()))
+                        listBalls.append(Ball(self.rect.x, self.rect.y, self.width, self.height, row.color))
 
     def collision(self, player, windowSize, listballs):
         if pygame.sprite.collide_mask(self, player):
