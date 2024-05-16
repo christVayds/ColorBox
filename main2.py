@@ -22,6 +22,8 @@ balls = [
     Ball((windowSize['width'] - 10) / 2, (windowSize['height'] - 10), 10, 10, colors.randomColor())
 ]
 
+font = pygame.font.SysFont('arial', 30)
+
 def draw():
 
     screen.fill((0,0,0))
@@ -37,6 +39,9 @@ def draw():
         ball.draw(screen)
         ball.collision(player, windowSize, balls)
         ball.boxCollision(game.listObjectBox, balls)
+
+    text = font.render(str(round(clock.get_fps(), 2)), True, (255,255,255))
+    screen.blit(text, text.get_rect())
 
     pygame.display.flip()
 

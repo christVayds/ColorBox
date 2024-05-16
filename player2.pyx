@@ -4,7 +4,7 @@ import colors
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, int x, int y, int width, int height):
         super().__init__()
         self.width = width
         self.height = height
@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
     def draw(self, screen):
 
         self.movement()
-        pygame.draw.rect(screen, (255,255,255), self.rect)
+        pygame.draw.rect(screen, (255,255,0), self.rect)
 
     def movement(self):
 
@@ -29,12 +29,12 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT]:
             self.move_x(self.speed)
 
-    def move_x(self, direction):
+    def move_x(self, int direction):
         self.rect.x += direction
 
 class Ball(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, width, height, color=(255,255,255)):
+    def __init__(self, int x, int y, int width, int height, color=(255,255,255)):
         super().__init__()
         self.width = width
         self.height = height
@@ -59,14 +59,14 @@ class Ball(pygame.sprite.Sprite):
     def boxCollision(self, objectBoxes, listBalls):
         for column in objectBoxes:
             for row in column:
-                if pygame.sprite.collide_mask(self, row):
+                if pygame.sprite.collide_rect(self, row):
                     self.dirx = random.choice([1, -1])
                     self.diry = 1
                     column.remove(row)
                     listBalls.append(Ball(self.rect.x, self.rect.y, self.width, self.height, row.color))
 
     def collision(self, player, windowSize, listballs):
-        if pygame.sprite.collide_mask(self, player):
+        if pygame.sprite.collide_rect(self, player):
             self.dirx = random.choice([1, -1])
             self.diry = -1
 
@@ -90,7 +90,7 @@ class Ball(pygame.sprite.Sprite):
 
 class objectBox(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, width, height, color=(255,255,255)):
+    def __init__(self, int x, int y, int width, int height, color=(255,255,255)):
         self.width = width
         self.height = height
         self.color = color
